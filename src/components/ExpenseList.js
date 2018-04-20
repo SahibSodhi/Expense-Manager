@@ -6,9 +6,11 @@ class ExpenseList extends Component {
   render() {
     return (
       <View>
-        <Text>
-          ExpenseList
-        </Text>
+        <Text>ExpenseList</Text>
+        <Text>ExpenseList</Text>
+        <Text>ExpenseList</Text>
+        <Text>ExpenseList</Text>
+        <Text>ExpenseList</Text>
       </View>
     );
   }
