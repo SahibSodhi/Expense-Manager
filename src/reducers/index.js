@@ -1,5 +1,6 @@
 import { combineReducers } from 'redux';
+import ExpenseFormReducer from './ExpenseFormReducer';
 
 export default combineReducers({
-  list: () => []
+  expenseForm: ExpenseFormReducer
 });

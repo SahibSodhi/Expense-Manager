@@ -1,0 +1,1 @@
+export const EXPENSE_UPDATE = 'expense_update';

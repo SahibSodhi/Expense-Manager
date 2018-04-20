@@ -1,8 +1,11 @@
 import React, { Component } from 'react';
-import { Card, CardSection, Input, Button } from './common';
+import { connect } from 'react-redux';
 import { Text } from 'react-native';
+import { Card, CardSection, Input, Button } from './common';
+import { expenseUpdate } from '../actions';
 
-export default class ExpenseCreate extends Component {
+class ExpenseCreate extends Component {
+
   render() {
     return (
       <Card>
@@ -10,6 +13,8 @@ export default class ExpenseCreate extends Component {
           <Input
             label="Name"
             placeholder="Rent"
+            value={this.props.name}
+            onChangeText={value => this.props.expenseUpdate({ prop: 'name', value})}
           />
         </CardSection>
 
@@ -17,6 +22,8 @@ export default class ExpenseCreate extends Component {
           <Input
             label="Amount"
             placeholder="1000"
+            value={this.props.amount}
+            onChangeText={value => this.props.expenseUpdate({ prop: 'amount', value})}
           />
         </CardSection>
 
@@ -39,3 +46,10 @@ export default class ExpenseCreate extends Component {
     );
   }
 }
+
+const mapStateToProps = state => {
+  const { name, amount, deadline } = state.expenseForm;
+  return { name, amount, deadline };
+};
+
+export default connect(mapStateToProps, { expenseUpdate })(ExpenseCreate);
