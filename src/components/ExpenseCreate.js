@@ -28,9 +28,10 @@ class ExpenseCreate extends Component {
           />
         </CardSection>
 
-        <CardSection>
+        <CardSection style={{ flexDirection: 'column' }, { flexGrow: 2 }}>
+          <Text style={styles.dateLabelStyle}>Date</Text>
           <DatePicker
-            style={{ flex: 1 }}
+            style={{ flex: 1 }, { marginLeft: 50 }}
             date={this.props.deadline}
             mode="date"
             placeholder="select a deadline date"
@@ -47,12 +48,14 @@ class ExpenseCreate extends Component {
                 marginLeft: 0
               },
               dateInput: {
-                marginLeft: 36
+                marginLeft: 36,
+                flex: 1
               }
             }}
             onDateChange={value => this.props.expenseUpdate({ prop: 'deadline', value})}
           />
         </CardSection>
+
         <CardSection>
           <Button>
             Create
@@ -68,6 +71,13 @@ class ExpenseCreate extends Component {
     );
   }
 }
+
+const styles = {
+  dateLabelStyle: {
+    paddingLeft: 20,
+    fontSize: 18
+  }
+};
 
 const mapStateToProps = state => {
   const { name, amount, deadline } = state.expenseForm;
