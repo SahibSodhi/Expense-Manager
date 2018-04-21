@@ -30,13 +30,13 @@ class ExpenseCreate extends Component {
 
         <CardSection>
           <DatePicker
-            style={{width: 200}}
+            style={{ flex: 1 }}
             date={this.props.deadline}
             mode="date"
-            placeholder="select date"
-            format="YYYY-MM-DD"
-            minDate="2018-04-01"
-            maxDate="2019-04-01"
+            placeholder="select a deadline date"
+            format="DD-MM-YYYY"
+            minDate="04-01-2018"
+            maxDate="04-01-2019"
             confirmBtnText="Confirm"
             cancelBtnText="Cancel"
             customStyles={{
