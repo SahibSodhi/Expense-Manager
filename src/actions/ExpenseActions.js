@@ -2,7 +2,8 @@ import firebase from 'firebase';
 import { Actions } from 'react-native-router-flux';
 import {
   EXPENSE_UPDATE,
-  EXPENSE_CREATE
+  EXPENSE_CREATE,
+  EXPENSES_FETCH_SUCCESS
 } from './types';
 
 export const expenseUpdate = ({ prop, value }) => {
@@ -23,3 +24,13 @@ export const expenseCreate = ({ name, amount, deadline }) => {
       });
   };
 };
+
+export const expensesFetch = () => {
+  const { currentUser } = firebase.auth();
+  return dispatch => {
+    firebase.database().ref(`/users/${currentUser.uid}/expenses`)
+      .on('value', snapshot => {
+        dispatch({ type: EXPENSES_FETCH_SUCCESS, payload: snapshot.val() });
+      })
+  }
+}
