@@ -2,10 +2,16 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Text } from 'react-native';
 import { Card, CardSection, Input, Button } from './common';
-import { expenseUpdate } from '../actions';
+import { expenseUpdate, expenseCreate } from '../actions';
 import DatePicker from 'react-native-datepicker';
 
 class ExpenseCreate extends Component {
+
+  onButtonPress() {
+    const { name, amount, deadline } = this.props;
+
+    this.props.expenseCreate({ name, amount, deadline });
+  }
 
   render() {
     return (
@@ -57,7 +63,7 @@ class ExpenseCreate extends Component {
         </CardSection>
 
         <CardSection>
-          <Button>
+          <Button onPress={this.onButtonPress.bind(this)}>
             Create
           </Button>
         </CardSection>
@@ -84,4 +90,6 @@ const mapStateToProps = state => {
   return { name, amount, deadline };
 };
 
-export default connect(mapStateToProps, { expenseUpdate })(ExpenseCreate);
+export default connect(mapStateToProps, {
+  expenseUpdate, expenseCreate
+})(ExpenseCreate);
