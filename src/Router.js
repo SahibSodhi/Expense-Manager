@@ -7,25 +7,26 @@ import LoginForm from './components/LoginForm';
 const RouterComponent = () => {
   return (
     <Router>
-      <Scene key="root">
+      <Scene key="auth">
         <Scene key="loginForm"
-        component={LoginForm}
-        title="Sign-Up/In"
-        initial
+          component={LoginForm}
+          title="Sign-Up/In"
+          initial
         />
 
         <Scene
-        key="expenseList"
-        component={ExpenseList}
-        title="My Expenses"
-        rightTitle="Add"
-        onRight={() => { Actions.expenseCreate() }}
-        />
+            key="expenseList"
+            component={ExpenseList}
+            title="My Expenses"
+            rightTitle="Add"
+            onRight={() => { Actions.expenseCreate() }}
+          />
 
         <Scene
           key="expenseCreate"
           title="CreateExpense"
-          component={ExpenseCreate} />
+          component={ExpenseCreate}
+        />
       </Scene>
     </Router>
   );
