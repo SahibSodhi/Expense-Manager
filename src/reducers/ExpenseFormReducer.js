@@ -5,7 +5,7 @@ import {
 const INITIAL_STATE = {
   name: '',
   amount: '',
-  deadline: ''
+  deadline: '',
 };
 
 export default (state = INITIAL_STATE, action) => {
