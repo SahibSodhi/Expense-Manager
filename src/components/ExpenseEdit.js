@@ -1,24 +1,29 @@
+import _ from 'lodash';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Card, CardSection, Button } from './common';
-import { expenseUpdate, expenseCreate } from '../actions';
 import ExpenseForm from './ExpenseForm';
+import { expenseUpdate, expenseSave } from '../actions';
 
-class ExpenseCreate extends Component {
+class ExpenseEdit extends Component {
+  componentWillMount() {
+    _.each(this.props.expense, (value, prop) => {
+      this.props.expenseUpdate({ prop, value });
+    });
+  }
 
   onButtonPress() {
     const { name, amount, deadline } = this.props;
-
-    this.props.expenseCreate({ name, amount, deadline });
+    this.props.expenseSave({ name, amount, deadline, uid: this.props.expense.uid });
   }
 
   render() {
     return (
       <Card>
-        <ExpenseForm {...this.props} />
+        <ExpenseForm />
         <CardSection>
           <Button onPress={this.onButtonPress.bind(this)}>
-            Create
+            Save Changes
           </Button>
         </CardSection>
       </Card>
@@ -26,11 +31,11 @@ class ExpenseCreate extends Component {
   }
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   const { name, amount, deadline } = state.expenseForm;
   return { name, amount, deadline };
 };
 
 export default connect(mapStateToProps, {
-  expenseUpdate, expenseCreate
-})(ExpenseCreate);
+  expenseUpdate, expenseSave
+})(ExpenseEdit);

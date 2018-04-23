@@ -23,8 +23,8 @@ class ExpenseList extends Component {
     this.dataSource = ds.cloneWithRows(expenses);
   }
 
-  renderRow(expenses) {
-    return <ListItem expenses={expenses} />;
+  renderRow(expense) {
+    return <ListItem expense={expense} />;
   }
 
   render() {

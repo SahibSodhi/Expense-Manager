@@ -31,6 +31,16 @@ export const expensesFetch = () => {
     firebase.database().ref(`/users/${currentUser.uid}/expenses`)
       .on('value', snapshot => {
         dispatch({ type: EXPENSES_FETCH_SUCCESS, payload: snapshot.val() });
-      })
-  }
-}
+      });
+  };
+};
+
+export const expenseSave = ({ name, amount, deadline , uid }) => {
+  const { currentUser } = firebase.auth();
+
+  return () => {
+    firebase.database().ref(`/users/${currentUser.uid}/expenses/${uid}`)
+      .set({ name, amount, deadline })
+      .then(() => console.log('saved'));
+  };
+};
