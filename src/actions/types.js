@@ -6,3 +6,4 @@ export const LOGIN_USER_FAIL = 'login_user_fail';
 export const LOGIN_USER = 'login_user';
 export const EXPENSE_CREATE = 'expense_create';
 export const EXPENSES_FETCH_SUCCESS = 'expenses_fetch_success';
+export const EXPENSE_SAVE_SUCCESS = 'expense_save_success';
