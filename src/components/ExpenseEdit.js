@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Card, CardSection, Button, Confirm } from './common';
 import ExpenseForm from './ExpenseForm';
-import { expenseUpdate, expenseSave } from '../actions';
+import { expenseUpdate, expenseSave, expenseDelete } from '../actions';
 
 class ExpenseEdit extends Component {
   state = { showModal: false };
@@ -17,6 +17,16 @@ class ExpenseEdit extends Component {
   onButtonPress() {
     const { name, amount, deadline } = this.props;
     this.props.expenseSave({ name, amount, deadline, uid: this.props.expense.uid });
+  }
+
+  onAccept() {
+    const { uid } = this.props.expense;
+
+    this.props.expenseDelete({ uid });
+  }
+
+  onDecline() {
+    this.setState({ showModal: false });
   }
 
   render() {
@@ -36,7 +46,11 @@ class ExpenseEdit extends Component {
           </Button>
         </CardSection>
 
-        <Confirm visible={this.state.showModal}>
+        <Confirm
+          visible={this.state.showModal}
+          onAccept={this.onAccept.bind(this)}
+          onDecline={this.onDecline.bind(this)}
+        >
           Are you sure?
         </Confirm>
       </Card>
@@ -50,5 +64,5 @@ const mapStateToProps = (state) => {
 };
 
 export default connect(mapStateToProps, {
-  expenseUpdate, expenseSave
+  expenseUpdate, expenseSave, expenseDelete
 })(ExpenseEdit);

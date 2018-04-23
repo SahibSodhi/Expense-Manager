@@ -16,6 +16,7 @@ export const expenseUpdate = ({ prop, value }) => {
 
 export const expenseCreate = ({ name, amount, deadline }) => {
   const { currentUser } = firebase.auth();
+
   return (dispatch) => {
     firebase.database().ref(`/users/${currentUser.uid}/expenses`)
       .push({ name, amount, deadline })
@@ -28,6 +29,7 @@ export const expenseCreate = ({ name, amount, deadline }) => {
 
 export const expensesFetch = () => {
   const { currentUser } = firebase.auth();
+
   return (dispatch) => {
     firebase.database().ref(`/users/${currentUser.uid}/expenses`)
       .on('value', snapshot => {
@@ -48,6 +50,18 @@ export const expenseSave = ({ name, amount, deadline , uid }) => {
       .then(() => {
         dispatch({ type: EXPENSE_SAVE_SUCCESS });
         Actions.pop();
+      });
+  };
+};
+
+export const expenseDelete = ({ uid }) => {
+  const { currentUser }  = firebase.auth();
+
+  return (dispatch) => {
+    firebase.database().ref(`/users/${currentUser.uid}/expenses/${uid}`)
+      .remove()
+      .then(() => {
+        Actions.expenseList({ type: 'reset' });
       });
   };
 };
