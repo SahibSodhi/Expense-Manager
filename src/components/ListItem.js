@@ -14,10 +14,17 @@ export default class ListItem extends Component {
     return (
       <TouchableWithoutFeedback onPress={this.onRowPress.bind(this)}>
         <View>
-          <CardSection>
-            <Text style={styles.titleStyle}>
-              {name} - {amount}
-            </Text>
+          <CardSection style={styles.containerStyle}>
+            <View style={{ alignSelf: 'flex-start' }}>
+              <Text style={styles.titleStyle}>
+                {name}
+              </Text>
+            </View>
+            <View style={{ alignSelf: 'flex-end' }}>
+              <Text style={styles.titleStyle}>
+                {amount}
+              </Text>
+            </View>
           </CardSection>
         </View>
       </TouchableWithoutFeedback>
@@ -26,8 +33,14 @@ export default class ListItem extends Component {
 }
 
 const styles = {
+  containerStyle: {
+    alignItems: 'center',
+    flexDirection: 'row',
+    justifyContent: 'space-between'
+  },
   titleStyle: {
-    fontSize: 18,
-    paddingLeft: 15
+    fontSize: 24,
+    lineHeight: 24,
+    margin: 20
   }
 };

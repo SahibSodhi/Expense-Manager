@@ -1,9 +1,10 @@
 import _ from 'lodash';
 import React, { Component } from 'react';
-import { ListView } from 'react-native';
+import { ListView, View, Text } from 'react-native';
 import { connect } from 'react-redux';
 import { expensesFetch } from '../actions';
 import ListItem from './ListItem';
+import { CardSection } from './common';
 
 class ExpenseList extends Component {
   componentWillMount() {

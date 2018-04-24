@@ -47,7 +47,7 @@ class LoginForm extends Component {
 
   render() {
     return (
-      <Card>
+      <Card style={styles.cardStyle}>
         <CardSection>
           <Input
             label="Email"
@@ -82,6 +82,10 @@ const styles = {
     fontSize: 20,
     alignSelf: 'center',
     color: 'red'
+  },
+  cardStyle: {
+    backgroundColor: '#f79a3d',
+    height: 400
   }
 };
 
