@@ -22,7 +22,7 @@ export default class ListItem extends Component {
             </View>
             <View style={{ alignSelf: 'flex-end' }}>
               <Text style={styles.titleStyle}>
-                {amount}
+                {amount}€
               </Text>
             </View>
           </CardSection>
@@ -39,8 +39,9 @@ const styles = {
     justifyContent: 'space-between'
   },
   titleStyle: {
-    fontSize: 24,
-    lineHeight: 24,
-    margin: 20
+    fontSize: 20,
+    lineHeight: 22,
+    margin: 20,
+    color: 'black'
   }
 };

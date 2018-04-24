@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Card, CardSection, Input, Button, Spinner } from './common';
-import { Text, View } from 'react-native';
+import { Text, View, ImageBackground } from 'react-native';
 import { emailChanged, passwordChanged, loginUser } from '../actions';
 
 class LoginForm extends Component {
@@ -47,35 +47,49 @@ class LoginForm extends Component {
 
   render() {
     return (
-      <Card style={styles.cardStyle}>
-        <CardSection>
-          <Input
-            label="Email"
-            placeholder="user@gmail.com"
-            onChangeText={this.onEmailChange.bind(this)}
-            value={this.props.email}
-          />
-        </CardSection>
+      <ImageBackground
+        style={{
+          backgroundColor: '#ccc',
+          flex: 1,
+          position: 'absolute',
+          width: '100%',
+          height: '100%',
+          justifyContent: 'center',
+        }}
+        source={{ uri: remote }}
+      >
+        <Card style={styles.cardStyle}>
+          <CardSection>
+            <Input
+              label="Email"
+              placeholder="user@gmail.com"
+              onChangeText={this.onEmailChange.bind(this)}
+              value={this.props.email}
+            />
+          </CardSection>
 
-        <CardSection>
-          <Input
-            secureTextEntry
-            label="Password"
-            placeholder="password"
-            onChangeText={this.onPasswordChange.bind(this)}
-            value={this.props.password}
-          />
-        </CardSection>
+            <CardSection>
+              <Input
+                secureTextEntry
+                label="Password"
+                placeholder="password"
+                onChangeText={this.onPasswordChange.bind(this)}
+                value={this.props.password}
+              />
+            </CardSection>
 
-        {this.renderError()}
+            {this.renderError()}
 
-        <CardSection>
-          {this.renderButton()}
-        </CardSection>
-      </Card>
+            <CardSection>
+              {this.renderButton()}
+            </CardSection>
+        </Card>
+      </ImageBackground>
     );
   }
 }
+
+const remote = 'https://i.pinimg.com/originals/f3/c5/7b/f3c57bd6e2044e12a4654338c8838d58.jpg';
 
 const styles = {
   errorTextStyle: {

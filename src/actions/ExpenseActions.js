@@ -8,11 +8,12 @@ import {
 } from './types';
 
 export const expenseUpdate = ({ prop, value }) => {
-  return {
-    type: EXPENSE_UPDATE,
-    payload: { prop, value }
+  return (dispatch) => {
+    dispatch({type: EXPENSE_UPDATE,
+      payload: { prop, value }
+    });
   };
-};
+}
 
 export const expenseCreate = ({ name, amount, deadline }) => {
   const { currentUser } = firebase.auth();

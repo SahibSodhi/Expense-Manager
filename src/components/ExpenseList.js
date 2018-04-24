@@ -1,12 +1,13 @@
 import _ from 'lodash';
 import React, { Component } from 'react';
-import { ListView, View, Text } from 'react-native';
+import { ListView, View, Text, ScrollView } from 'react-native';
 import { connect } from 'react-redux';
 import { expensesFetch } from '../actions';
 import ListItem from './ListItem';
 import { CardSection } from './common';
 
 class ExpenseList extends Component {
+
   componentWillMount() {
     this.props.expensesFetch();
     this.createDataSource(this.props);
@@ -24,22 +25,60 @@ class ExpenseList extends Component {
     this.dataSource = ds.cloneWithRows(expenses);
   }
 
+  renderTotal({ expenses }) {
+    const sum = expenses.reduce((sum, expense) => sum + parseInt(expense.amount), 0)
+    return sum;
+  }
   renderRow(expense) {
-    return <ListItem expense={expense} />;
+    return <ScrollView><ListItem expense={expense} /></ScrollView>;
   }
 
   render() {
+    const expenses = this.props.expenses;
+    let total = 0;
+    if(expenses.length) {
+      total = expenses.reduce((sum, expense) => sum + parseInt(expense.amount), 0)
+    }
+
     return (
-      <ListView
-        enableEmptySections
-        dataSource={this.dataSource}
-        renderRow={this.renderRow}
-      />
+      <ScrollView>
+        <CardSection style={styles.totalContainer}>
+          <Text style={styles.totalTextStyle}>Tracked Bills: {total}€</Text>
+        </CardSection>
+
+        <ListView
+          enableEmptySections
+          dataSource={this.dataSource}
+          renderRow={this.renderRow}
+        />
+      </ScrollView>
     );
   }
 }
 
-const mapStateToProps = state => {
+const styles = {
+  totalContainer: {
+    backgroundColor: '#9dff84',
+    height: 100,
+    shadowColor: '#000000',
+    shadowOffset: {
+      width: 0,
+      height: 3
+    },
+    shadowRadius: 5,
+    shadowOpacity: 1.0,
+    elevation: 5,
+    justifyContent: 'center'
+  },
+  totalTextStyle: {
+    color: '#1d3018',
+    fontSize: 26,
+    fontWeight: '600',
+    alignSelf: 'center'
+  }
+}
+
+const mapStateToProps =  state => {
   const expenses = _.map(state.expenses, (val, uid) => {
     return { ...val, uid };
   });
