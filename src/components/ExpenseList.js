@@ -37,13 +37,13 @@ class ExpenseList extends Component {
     const expenses = this.props.expenses;
     let total = 0;
     if(expenses.length) {
-      total = expenses.reduce((sum, expense) => sum + parseInt(expense.amount), 0)
+      total = expenses.reduce((sum, expense) => sum + parseFloat(expense.amount), 0)
     }
 
     return (
       <ScrollView>
         <CardSection style={styles.totalContainer}>
-          <Text style={styles.totalTextStyle}>Tracked Bills: {total}€</Text>
+          <Text style={styles.totalTextStyle}>Tracked Bills: {total.toFixed(2)} €</Text>
         </CardSection>
 
         <ListView
@@ -58,7 +58,7 @@ class ExpenseList extends Component {
 
 const styles = {
   totalContainer: {
-    backgroundColor: '#9dff84',
+    backgroundColor: '#efb358',
     height: 100,
     shadowColor: '#000000',
     shadowOffset: {

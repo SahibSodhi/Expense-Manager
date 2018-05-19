@@ -22,7 +22,7 @@ export default class ListItem extends Component {
             </View>
             <View style={{ alignSelf: 'flex-end' }}>
               <Text style={styles.titleStyle}>
-                {amount}€
+                {parseFloat((amount * 100)/100)} €
               </Text>
             </View>
           </CardSection>

@@ -19,7 +19,7 @@ const RouterComponent = () => {
             key="expenseList"
             component={ExpenseList}
             title="My Expenses"
-            rightTitle="Add"
+            rightTitle="ADD"
             onRight={() => Actions.expenseCreate() }
           />
 
