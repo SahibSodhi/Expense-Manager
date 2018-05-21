@@ -37,7 +37,7 @@ Moneypoly is a simple expense app tracker that lets you add or edit an expense a
 
 
 
-[![expense app tracker](https://i.imgur.com/8tijqZ7.png)](https://showmore.com/embed/g471aom)
+[![expense app tracker](https://i.imgur.com/8tijqZ7.png)](https://showmore.com/embed/g471aom)![img](https://i.imgur.com/SI4NzUq.png)
 
 ## Built With
 
